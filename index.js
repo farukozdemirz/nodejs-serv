@@ -1,9 +1,13 @@
-const mongoose = require('mongoose');
-const dbURL = 'mongodb+srv://farukozdemirz:bhathu123F@cluster0.kr1ix6u.mongodb.net/?retryWrites=true&w=majority';
-
+require('dotenv').config();
 const express = require("express");
 const app = express();
 
+mongoose
+    .connect(
+        process.env.MONGODB_URI,
+        { useNewUrlParser: true }
+    ).then((res) => console.log('connected'))
+    .catch(err => console.error('Error while connecting to DB', err));
 
 app.use(express.json());
 
